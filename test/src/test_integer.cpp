@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
-
-#include "Integer.h"
 #include <sstream>
+
+#include "pdfgen/Integer.h"
+
 
 TEST(DataTypes, IntegerTest)
 {

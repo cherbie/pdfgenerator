@@ -14,11 +14,12 @@ target_sources(test
 		main.cpp
 		src/test_name.cpp
     src/test_integer.cpp
+    src/test_string.cpp
 )
 
 target_include_directories(test
 	PUBLIC
-		"${CMAKE_SOURCE_DIR}/include"
+    "${PDFGEN_PROJECT_DIR}/include"
 		"${GTEST_MODULE_PATH}/googletest/include"
 		"${GTEST_MODULE_PATH}/googlemock/include"
 )

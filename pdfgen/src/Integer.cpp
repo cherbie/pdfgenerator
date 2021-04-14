@@ -1,4 +1,4 @@
-#include "Integer.h"
+#include "pdfgen/Integer.h"
 
 namespace pdf
 {

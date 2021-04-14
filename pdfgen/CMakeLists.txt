@@ -5,12 +5,13 @@ add_library(pdfgen SHARED)
 
 target_sources(pdfgen
 	PRIVATE
-    Name.cpp
-    Integer.cpp
+    src/Name.cpp
+    src/Integer.cpp
+    src/String.cpp
 )
 
 target_include_directories(pdfgen
 	PUBLIC
-		"${CMAKE_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
