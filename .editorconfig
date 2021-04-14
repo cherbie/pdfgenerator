@@ -1,0 +1,18 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = spaces
+indent_size = 2
+
+# Tab indentation (no size specified)
+[*.md]
+indent_style = tab
+indent_size = 2
+
+[{*.h, *.cpp}]
+insert_final_newline = true
+trim_trailing_whitespace = true
+

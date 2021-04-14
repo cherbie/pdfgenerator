@@ -5,7 +5,9 @@ add_library(pdfgen SHARED)
 
 target_sources(pdfgen
 	PRIVATE
-		name.cpp)
+    Name.cpp
+    Integer.cpp
+)
 
 target_include_directories(pdfgen
 	PUBLIC
