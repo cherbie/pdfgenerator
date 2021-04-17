@@ -26,7 +26,7 @@ namespace pdf
 
     std::ostream& operator<<(std::ostream& os, const String& obj)
     {
-      os << "{" << obj.m_value << "}";
+      os << "(" << obj.m_value << ")";
       return os;
     }
 
