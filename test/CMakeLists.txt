@@ -15,6 +15,7 @@ target_sources(test
 		src/test_name.cpp
     src/test_integer.cpp
     src/test_string.cpp
+    src/test_bool.cpp
 )
 
 target_include_directories(test

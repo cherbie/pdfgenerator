@@ -8,6 +8,7 @@ target_sources(pdfgen
     src/Name.cpp
     src/Integer.cpp
     src/String.cpp
+    src/Bool.cpp
 )
 
 target_include_directories(pdfgen
