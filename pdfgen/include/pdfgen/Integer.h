@@ -13,11 +13,21 @@ namespace pdf
     {
 	    public:
 		    Integer() = delete;
-        Integer(T value);
-		    ~Integer();
+        Integer(T n) : m_value(n) {}
+		    ~Integer() {}
+
+        template <typename U>
+        Integer& operator =(U n)
+        {
+          m_value = n;
+          return *this;
+        }
 
         template <typename U>
         friend bool operator==(const Integer<U>& lvalue, const U& rvalue);
+
+        template <typename U>
+        friend bool operator==(const U& lvalue, const Integer<U>& rvalue);
 
         template <typename U>
         friend std::ostream& operator<<(std::ostream& os, const Integer<U>& i);
@@ -28,6 +38,12 @@ namespace pdf
 
     template <typename T>
     bool operator==(const Integer<T>& lvalue, const T& rvalue)
+    {
+      return lvalue.m_value == rvalue;
+    }
+
+    template <typename T>
+    bool operator==(const T& lvalue, const Integer<T>& rvalue)
     {
       return lvalue.m_value == rvalue;
     }
