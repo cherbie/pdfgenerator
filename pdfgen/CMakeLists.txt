@@ -9,6 +9,8 @@ target_sources(pdfgen
     src/Integer.cpp
     src/String.cpp
     src/Bool.cpp
+    src/Dictionary.cpp
+    src/Object.cpp
 )
 
 target_include_directories(pdfgen

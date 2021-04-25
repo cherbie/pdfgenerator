@@ -5,17 +5,34 @@ namespace pdf
   namespace data_type
   {
     Name::Name(const std::string& title)
-    : m_value(title)
+      : m_name(std::make_unique<std::string>(title))
     {
+    }
+    
+    Name::Name(const Name& name)
+      : Name()
+    {
+      if (name)
+          m_name = std::make_unique<std::string>(*name.m_name);
     }
 
     Name::~Name()
     {
     }
-
-    std::ostream& operator<<(std::ostream& os, const Name& n)
+    
+    Name::operator bool() const
     {
-      os << "/" << n.m_value;
+      return m_name != nullptr;
+    }
+    
+    bool operator==(const Name& lvalue, const Name& rvalue)
+    {
+      return lvalue && rvalue && *lvalue.m_name == *rvalue.m_name;
+    }
+
+    std::ostream& operator<<(std::ostream& os, const Name& obj)
+    {
+      os << "/" << *obj.m_name;
       return os;
     }
   } // namespace data_type

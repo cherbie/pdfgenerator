@@ -1,61 +1,36 @@
-#ifndef _INTEGER_H
-#define _INTEGER_H
+#ifndef _PDF_INTEGER_H
+#define _PDF_INTEGER_H
 
 #include <ostream>
+#include <memory>
 
-// PDF "number" representation handler
 namespace pdf
 {
   namespace data_type
   {
-    template <class T>
+    /**
+     * PDF "number" representation handler
+     */
     class Integer
     {
 	    public:
-		    Integer() = delete;
-        Integer(T n) : m_value(n) {}
-		    ~Integer() {}
+		    Integer() = default;
+        Integer(int n);
+        Integer(double n);
+        Integer(float n);
+        Integer(const Integer& n);
+        virtual ~Integer();
 
-        template <typename U>
-        Integer& operator =(U n)
-        {
-          m_value = n;
-          return *this;
-        }
-
-        template <typename U>
-        friend bool operator==(const Integer<U>& lvalue, const U& rvalue);
-
-        template <typename U>
-        friend bool operator==(const U& lvalue, const Integer<U>& rvalue);
-
-        template <typename U>
-        friend std::ostream& operator<<(std::ostream& os, const Integer<U>& i);
+        explicit operator bool() const;
+        friend bool operator==(const Integer& lvalue, int rvalue);
+        friend bool operator==(int lvalue, const Integer& rvalue);
+        friend bool operator==(const Integer& lvalue, const Integer& rvalue);
+        friend std::ostream& operator<<(std::ostream& os, const Integer& obj);
 
      private:
-        T m_value;
+        std::unique_ptr<int> m_int = nullptr;
     }; // class Integer
-
-    template <typename T>
-    bool operator==(const Integer<T>& lvalue, const T& rvalue)
-    {
-      return lvalue.m_value == rvalue;
-    }
-
-    template <typename T>
-    bool operator==(const T& lvalue, const Integer<T>& rvalue)
-    {
-      return lvalue.m_value == rvalue;
-    }
-
-    template <typename T>
-    std::ostream& operator<<(std::ostream& os, const Integer<T>& i)
-    {
-      os << std::showpos
-         << i.m_value;
-      return os;
-    }
   } // namespace data_type
 } // namespace pdf
 
-#endif // define _INTEGER_H
+#endif // define _PDF_INTEGER_H

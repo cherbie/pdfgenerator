@@ -10,42 +10,20 @@ namespace pdf
     class Bool
     {
       public:
-        Bool() = delete;
+        Bool() = default;
         Bool(bool b);
-        Bool& operator=(bool b);
-        ~Bool();
+        virtual ~Bool();
 
-        explicit operator bool() const
-        {
-          return m_value;
-        }
+        explicit operator bool() const;
 
-        friend bool operator==(const Bool& lvalue, const Bool& rvalue)
-        {
-          return lvalue.m_value == rvalue.m_value;
-        }
-
-        friend std::ostream& operator<<(std::ostream& os, const Bool& b)
-        {
-          if (b)
-            os << "true";
-          else
-            os << "false";
-          return os;
-        }
+        friend bool operator==(const Bool& lvalue, const Bool& rvalue);
+        friend std::ostream& operator<<(std::ostream& os, const Bool& b);
 
       private:
-        bool m_value;
+        bool m_bool = false;
     }; // class Bool
 
-    std::ostream& operator<<(std::ostream& os, bool b)
-    {
-      if (b)
-        os << "true";
-      else
-        os << "false";
-      return os;
-    }
+    std::ostream& operator<<(std::ostream& os, bool b);
   } // namespace data_type
 } // namespace pdf
 #endif // define _PDF_BOOL_H

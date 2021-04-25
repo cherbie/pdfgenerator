@@ -1,8 +1,9 @@
-#ifndef _NAME_H
-#define _NAME_H
+#ifndef _PDF_NAME_H
+#define _PDF_NAME_H
 
 #include <string>
 #include <ostream>
+#include <memory>
 
 // base class for a pdf "Name" object
 // example: /AValidName
@@ -13,16 +14,18 @@ namespace pdf
     class Name
     {
       public:
-		    Name(const std::string& title);
-        Name() = delete;
-        ~Name();
+        Name() = default;
+        Name(const Name& name);
+        Name(const std::string& title);
+        virtual ~Name();
 
+        explicit operator bool() const;
+        friend bool operator==(const Name& lvalue, const Name& rvalue);
         friend std::ostream& operator<<(std::ostream& os, const Name& obj);
-      private:
-        std::string m_value;
-    }; // class Name
 
-    std::ostream& operator<<(std::ostream& os, const Name& obj);
+      private:
+        std::unique_ptr<std::string> m_name = nullptr;
+    }; // class Name
   } // namespace data_type
 } // namespace pdf
-#endif // define _NAME_H
+#endif // define _PDF_NAME_H

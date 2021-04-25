@@ -3,6 +3,8 @@
 
 #include <string>
 #include <ostream>
+#include <memory>
+#include <cstdlib>
 
 // Base class for pdf String object
 namespace pdf
@@ -12,28 +14,23 @@ namespace pdf
     class String
     {
 	    public:
-		    String() = delete;
-        String(const char* ptr);
+		    String() = default;
+        String(const char* c_ptr);
+        String(const char* c_ptr, std::size_t n);
         String(const std::string& str);
-		    ~String();
+        String(const String& str);
+        String& operator=(const String& str);
+		    virtual ~String();
 
+        explicit operator bool() const;
         friend std::ostream& operator<<(std::ostream& os, const String& obj);
-        friend bool operator==(const String& s, const std::string& r_str);
+        friend bool operator==(const String& lvalue, const String& rvalue);
+        friend bool operator==(const std::string& lvalue, const String& rvalue);
+        friend bool operator==(const String& lvalue, const std::string& rvalue);
 
       private:
-        std::string m_value;
+        std::unique_ptr<std::string> m_str = nullptr;
     }; // class String
-
-    std::ostream& operator<<(std::ostream& os, const String& obj)
-    {
-      os << "(" << obj.m_value << ")";
-      return os;
-    }
-
-    bool operator==(const String& s, const std::string& r_str)
-    {
-      return s.m_value == r_str;
-    }
   } // namespace data_type
 } // namespace pdf
 #endif // _PDF_STRING_H

@@ -6,7 +6,7 @@
 
 TEST(DataTypes, IntegerTest)
 {
-  pdf::data_type::Integer<int> pdf_int(23);
+  pdf::data_type::Integer pdf_int(23);
   
   EXPECT_EQ(pdf_int, 23);
 
@@ -15,7 +15,7 @@ TEST(DataTypes, IntegerTest)
 
   std::ostringstream exp_sstream;
   exp_sstream << std::showpos
-              << 23;
+                          << 23;
 
   EXPECT_EQ(stream.str(), exp_sstream.str());
 }
