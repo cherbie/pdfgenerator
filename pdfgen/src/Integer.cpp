@@ -2,28 +2,31 @@
 
 namespace pdf
 {
-  namespace data_type
-  {
+    Integer::Integer()
+      : Value(0)
+    {
+    }
+
     Integer::Integer(int n)
-      : m_int(std::make_unique<int>(n))
+      : Value(n)
     {
     }
     
     Integer::Integer(double n)
-     : m_int(std::make_unique<int>(static_cast<int>(n)))
+     : Value(static_cast<int>(n))
     {
     }
     
     Integer::Integer(float n)
-     : m_int(std::make_unique<int>(static_cast<int>(n)))
+     : Value(static_cast<int>(n))
     {
     }
     
-    Integer::Integer(const Integer& n)
+    Integer::Integer(const Integer& obj)
       : Integer()
     {
-      if (n)
-        m_int = std::make_unique<int>(*n.m_int);
+      int n = obj.getInt();
+      setInt(n);
     }
     
     Integer::~Integer()
@@ -32,32 +35,30 @@ namespace pdf
     
     Integer::operator bool() const
     {
-      return m_int != nullptr;
+      return getInt() == 0;
     }
     
     bool operator==(const Integer& lvalue, int rvalue)
     {
-      return lvalue && *lvalue.m_int == rvalue;
+      return lvalue.getInt() == rvalue;
     }
 
     bool operator==(int lvalue, const Integer& rvalue)
     {
-      return rvalue && lvalue == *rvalue.m_int;
+      return lvalue == rvalue.getInt();
     }
     
     bool operator==(const Integer& lvalue, const Integer& rvalue)
     {
-      return lvalue && rvalue && *lvalue.m_int == *rvalue.m_int;
+      return lvalue.getInt() == rvalue.getInt();
     }
 
     std::ostream& operator<<(std::ostream& os, const Integer& obj)
     {
-      if (!obj)
-        return os;
+      const int  n = obj.getInt();
       os << std::showpos
-           << *obj.m_int
+           << n
            << std::noshowpos;
       return os;
     }
-  } // namespace data_type
 } // namespace pdf

@@ -6,16 +6,17 @@
 
 TEST(DataTypes, IntegerTest)
 {
-  pdf::data_type::Integer pdf_int(23);
+  const int testInt = 23;
+  pdf::Integer pdf_int(testInt);
   
-  EXPECT_EQ(pdf_int, 23);
+  EXPECT_EQ(pdf_int, testInt);
 
   std::ostringstream stream;
   stream << pdf_int;
 
   std::ostringstream exp_sstream;
   exp_sstream << std::showpos
-                          << 23;
+                          << testInt;
 
   EXPECT_EQ(stream.str(), exp_sstream.str());
 }

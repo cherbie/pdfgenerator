@@ -4,17 +4,17 @@
 #include <ostream>
 #include <memory>
 
+#include "pdfgen/Value.h"
+
 namespace pdf
 {
-  namespace data_type
-  {
     /**
      * PDF "number" representation handler
      */
-    class Integer
+    class Integer: public Value<int, 8>
     {
 	    public:
-		    Integer() = default;
+		    Integer();
         Integer(int n);
         Integer(double n);
         Integer(float n);
@@ -26,11 +26,7 @@ namespace pdf
         friend bool operator==(int lvalue, const Integer& rvalue);
         friend bool operator==(const Integer& lvalue, const Integer& rvalue);
         friend std::ostream& operator<<(std::ostream& os, const Integer& obj);
-
-     private:
-        std::unique_ptr<int> m_int = nullptr;
     }; // class Integer
-  } // namespace data_type
 } // namespace pdf
 
 #endif // define _PDF_INTEGER_H

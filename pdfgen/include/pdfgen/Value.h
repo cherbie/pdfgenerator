@@ -25,6 +25,7 @@ namespace pdf
     {
       public:
         Value() = delete;
+        Value(const Value& v) = delete;
         inline Value(std::unique_ptr<T> u_ptr, int tag = 0)
         {
           setPointer(u_ptr, tag);
