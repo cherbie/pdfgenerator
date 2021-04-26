@@ -17,6 +17,7 @@ target_sources(test
     src/test_string.cpp
     src/test_bool.cpp
     src/test_dictionary.cpp
+    src/test_value.cpp
 )
 
 target_include_directories(test
